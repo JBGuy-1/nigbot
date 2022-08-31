@@ -27,29 +27,6 @@ async def on_ready():
 for fn in os.listdir("./cogs"):
     if fn.endswith(".py"):
         bot.load_extension(f"cogs.{fn[:-3]}")
-# load
-
-
-@bot.command()
-async def load(ctx, extension):
-    bot.load_extension(f"cogs.{extension}")
-    await ctx.send("loaded")
-
-# unload
-
-
-@bot.command()
-async def unload(ctx, extension):
-    bot.unload_extension(f"cogs.{extension}")
-    await ctx.send("unloaded cog")
-
-# reload
-
-
-@bot.command()
-async def reload(ctx, extension):
-    bot.reload_extension(f"cogs.{extension}")
-    await ctx.send("reloaded cog")
 
 
 @bot.command()
@@ -114,49 +91,7 @@ async def verify(ctx):
     await react_messasge.add_reaction(emoji="😎")
 
 
-@bot.command(aliases=['que', 'q'])
-async def question(ctx, *, question):
-    respones = ['idk bro', 'word?', 'lmao what?']
-    await ctx.send(f":question: {question}\n :robot: {random.choices(respones)}")
-
-
-@bot.command()
-@commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member, *, reason=None):
-    await member.kick(reason=reason)
-    await ctx.send(f"{member.mention} has been kicked")
-
-# ban
-
-
-@bot.command()
-@commands.has_permissions(kick_members=True)
-async def ban(ctx, member: discord.Member, *, reason=None):
-    # if (not ctx.author.guild_permissions.manage_messages):
-    #   await ctx.send('nice try. reserved for mods only')
-    #   return
-    await member.ban(reason=reason)
-    await ctx.send(f"RIP bozo!\n{member.mention} has been banned")
-
-# Unban
-
-
-@bot.command(aliases=['forgive', 'vindicate', 'pardon'])
-@commands.has_permissions(kick_members=True)
-async def unban(ctx, *, member):
-    banned_users = await ctx.guild.bans()
-    member_name, member_discriminator = member.split('#')
-    for ban_entry in banned_users:
-        user = ban_entry.user
-        if (user.name, user.discriminator) == (member_name, member_discriminator):
-            await ctx.guild.unban(user)
-            jarg = ['pardoned', 'restored', 'unbaned']
-            await ctx.send(f"{user.mention} {random.choice(jarg)}")
-            return
-
 # error handling
-
-
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
@@ -169,22 +104,12 @@ async def on_command_error(ctx, error):
 
 # server stats
 
-
 # Show Avatar
-@bot.command(aliases=['av', 'pfp', 'dp'])
-async def avatar(ctx, member: discord.Member = None):
-    if member == None:
-        member = ctx.author
-    memberav = member.avatar_url
-    avembed = discord.Embed(title=f"{member.name}\'s pfp")
-    avembed.set_image(url=memberav)
-
-    await ctx.send(embed=avembed)
 
 # keep_alive()
 
 
-key = os.environ.get("BOT_TOKEN")
+key = os.environ.get('BOT_TOKEN')
 bot.run(key)
 
 # verify 953710369996685342
