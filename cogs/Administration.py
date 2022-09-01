@@ -2,7 +2,9 @@ import discord
 from discord.ext import commands
 import random
 
-class Kicks(commands.Cog):
+
+
+class Administration(commands.Cog):
     def __init__ (self, bot):
         self.bot=bot
 
@@ -21,7 +23,7 @@ class Kicks(commands.Cog):
         await member.ban(reason=reason)
         await ctx.send(f"RIP bozo!\n{member.mention} has been banned")
 
-    ## unban menber
+    # unban menber
     @commands.command(aliases=['forgive', 'vindicate', 'pardon'])
     @commands.has_permissions(kick_members=True)
     async def unban(self, ctx, *, member):
@@ -35,5 +37,5 @@ class Kicks(commands.Cog):
                 await ctx.send(f"{user.mention} {random.choice(jarg)}")
                 return
 
-def setup(bot):
-    bot.add_cog(Kicks(bot))
+async def setup(bot):
+    await bot.add_cog(Administration(bot))

@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+
 class Clear(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
@@ -12,5 +13,5 @@ class Clear(commands.Cog):
         await ctx.channel.purge(limit=amount)
         await ctx.send(f'cleared {amount} messages ')
 
-def setup(bot):
-    bot.add_cog(Clear(bot))
+async def setup(bot):
+    await bot.add_cog(Clear(bot))

@@ -1,15 +1,15 @@
+import os
+import random
 from datetime import datetime
 from distutils import extension
 from email import message
-from lib2to3.pgen2 import token
-import random
 from sqlite3 import Timestamp
 from turtle import clear, color
+import asyncio
+
 import discord
 from discord.ext import commands
-import os
 from sympy import limit
-
 
 #from keep_alive import keep_alive
 #my_secret = os.environ['token']
@@ -24,9 +24,13 @@ async def on_ready():
     print(f"The {bot.user} bot is online!")
 
 # cogs
-for fn in os.listdir("./cogs"):
-    if fn.endswith(".py"):
-        bot.load_extension(f"cogs.{fn[:-3]}")
+async def load_cog():
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await bot.load_extension(f"cogs.{filename[:-3]}")
+    
+            # cut off the .py from the file name
+
 
 
 @bot.command()
@@ -110,7 +114,14 @@ async def on_command_error(ctx, error):
 
 
 key = os.environ.get('BOT_TOKEN')
-bot.run(key)
+
+async def main():
+    await load_cog()
+    await bot.start(key)
+# bot.run(key)
+
+asyncio.run(main())
+
 
 # verify 953710369996685342
 # main chat 953583957579026444
