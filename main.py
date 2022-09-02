@@ -24,13 +24,14 @@ async def on_ready():
     print(f"The {bot.user} bot is online!")
 
 # cogs
+
+
 async def load_cog():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             await bot.load_extension(f"cogs.{filename[:-3]}")
-    
-            # cut off the .py from the file name
 
+            # cut off the .py from the file name
 
 
 @bot.command()
@@ -114,6 +115,7 @@ async def on_command_error(ctx, error):
 
 
 key = os.environ.get('BOT_TOKEN')
+
 
 async def main():
     await load_cog()

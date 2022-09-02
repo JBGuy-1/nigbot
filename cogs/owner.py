@@ -8,34 +8,34 @@ class Owner(commands.Cog):
     def __init__ (self, bot):
         self.bot = bot
 
-    ## load cog
+    ## load
     @commands.command()
     @commands.is_owner()
-    async def load(self, ctx, extension):
+    async def load(self,ctx, extension):
         try:
-            self.cog_load(f"cogs.{extension}")
+            await self.bot.load_extension(f"cogs.{extension}")
         except Exception as e:
             await ctx.send("couldn't load cog")
             return
-        await ctx.send("cog loaded sucessfully")
+        await ctx.send("loaded cog")
 
-    # unload cog
+    ## unload
     @commands.command()
     @commands.is_owner()
-    async def unload(self, ctx, extension):
+    async def unload(self,ctx, extension):
         try:
-            self.cog_unload (f"cogs.{extension}")
+            await self.bot.unload_extension(f"cogs.{extension}")
         except Exception as e:
             await ctx.send("couldn't unload cog")
             return
-        await ctx.send("cog unloaded sucessfully")
+        await ctx.send("unloaded cog")
 
     ## reload cog
     @commands.command()
     @commands.is_owner()
     async def reload(self,ctx, extension):
         try:
-            self.bot.reload_extension(f"cogs.{extension}")
+            await self.bot.reload_extension(f"cogs.{extension}")
         except Exception as e:
             await ctx.send("couldn't reload cog")
             return
