@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix=prefix, intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"The {bot.user} bot is online!")
+    print(f"{bot.user} is online!")
 
 # cogs
 
