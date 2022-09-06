@@ -6,7 +6,6 @@ from email import message
 from sqlite3 import Timestamp
 from turtle import clear, color
 import asyncio
-
 import discord
 from discord.ext import commands
 from sympy import limit
