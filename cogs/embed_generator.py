@@ -6,6 +6,8 @@ class Utility(commands.Cog):
         self.client = client
         self.colour = 0x4555ff
 
+
+
 #     @slash_command(name='ping', description='See bot ping!', guild_ids=[882441738713718815])
 #     async def ping(
 #         self,

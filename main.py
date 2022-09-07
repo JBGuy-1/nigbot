@@ -8,14 +8,13 @@ from turtle import clear, color
 import asyncio
 import discord
 from discord.ext import commands
-from sympy import limit
 
 #from keep_alive import keep_alive
 #my_secret = os.environ['token']
 
 prefix = "-"
 intents = discord.Intents().all()
-bot = commands.Bot(command_prefix=prefix, intents=intents)
+bot = commands.Bot(command_prefix=prefix, intents=intents, application_id="958858536710983711")
 
 
 @bot.event

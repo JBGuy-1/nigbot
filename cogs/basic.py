@@ -6,6 +6,10 @@ import discord
 class Basic(commands.Cog):
     def __init(self, bot):
         self.bot = bot
+    
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print ('Basic cog ready')
 
     @commands.command()
     async def heya(self,ctx):

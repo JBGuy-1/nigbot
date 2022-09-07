@@ -6,6 +6,9 @@ class QuestionGame(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print ('Questiongame Cog ready')
 
     @commands.command(aliases=['que', 'q'])
     async def question(ctx, *, question):

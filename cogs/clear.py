@@ -6,6 +6,10 @@ class Clear(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print ('clear cog ready')
+
     @commands.command(aliases=['erase', 'format', 'clear'])
     @commands.has_permissions(manage_messages=True)
     async def purge(self,ctx, amount=1):
